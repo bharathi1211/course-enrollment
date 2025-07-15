@@ -5,6 +5,7 @@ export default class CoursesRepository {
       const course = await Course.create({
         course_name: courseData.course_name,
         staff_id: courseData.staff_id,
+        department: courseData.department,
         course_id: courseData.course_id
         });
       return course;
@@ -25,6 +26,7 @@ export default class CoursesRepository {
     const course = await Course.findOrFail(id);
     course.merge({
       course_name: courseData.course_name,
+      department: courseData.department,
       staff_id: courseData.staff_id
     });
     return course.save();

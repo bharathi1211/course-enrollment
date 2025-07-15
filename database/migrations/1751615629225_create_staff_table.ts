@@ -7,6 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.integer('courseId').primary()
       table.string('courseName').notNullable().unique()
+      table.string('department').notNullable()
       table.integer('staffId').references('staffId').inTable('staff').onDelete('CASCADE')
       // table.integer('courseLimit')
       // table.integer('courseCount')

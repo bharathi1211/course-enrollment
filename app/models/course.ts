@@ -8,6 +8,9 @@ export default class Course extends BaseModel {
   @column({ isPrimary: true, columnName:'courseId' })
   declare course_id: number
 
+  @column({ columnName: 'department' })
+  declare department: string
+  
   @column({ columnName: 'courseName' })
   declare course_name: string
 
