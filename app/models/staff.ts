@@ -9,14 +9,8 @@ export default class Staff extends BaseModel {
   @column()
   declare staffName:string
 
-  // @column()
-  // declare position:string
-
   @column()
   declare department:string
-
-  // @column()
-  // declare contact:number
 
   @hasOne(() => Course)
   declare course: HasOne<typeof Course>
