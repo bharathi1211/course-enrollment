@@ -1,4 +1,5 @@
 import Course from "#models/course";
+import { log } from "console";
 
 export default class CoursesRepository {
    static async create(courseData : any) {
@@ -24,11 +25,9 @@ export default class CoursesRepository {
 
   static async update(id: number, courseData: any) {
     const course = await Course.findOrFail(id);
-    course.merge({
-      course_name: courseData.course_name,
-      department: courseData.department,
-      staff_id: courseData.staff_id
-    });
+    console.log(course);
+    console.log(courseData);
+    course.merge(courseData);
     return course.save();
 }
 

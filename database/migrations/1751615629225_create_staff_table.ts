@@ -5,10 +5,10 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.integer('courseId').primary()
-      table.string('courseName').notNullable().unique()
+      table.integer('course_id').primary()
+      table.string('course_name').notNullable().unique()
       table.string('department').notNullable()
-      table.integer('staffId').references('staffId').inTable('staff').onDelete('CASCADE')
+      table.integer('staff_id').references('staffId').inTable('staff').onDelete('CASCADE')
       // table.integer('courseLimit')
       // table.integer('courseCount')
     })

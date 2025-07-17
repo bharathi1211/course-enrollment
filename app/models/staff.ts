@@ -3,13 +3,13 @@ import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
 import type { HasOne } from '@adonisjs/lucid/types/relations'
 import Course from './course.js'
 export default class Staff extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true ,columnName:'staff_id' })
   declare staffId: number
 
-  @column()
+  @column({ columnName: 'staff_name' })
   declare staffName:string
 
-  @column()
+  @column({ columnName: 'department' })
   declare department:string
 
   @hasOne(() => Course)

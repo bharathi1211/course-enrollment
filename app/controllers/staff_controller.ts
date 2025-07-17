@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { staffStoreSchema,staffIdSchema,staffUpdateSchema} from "#validators/staff-validator"
 import StaffRepository from '../repository/StaffRepository.js'
+import { log } from 'console';
 //import { messages } from '@vinejs/vine/defaults';
 
 
@@ -26,6 +27,7 @@ export default class StaffController {
         try{
             console.log('Fetching all staffs');
             const staff = await StaffRepository.fetchAll()
+            log('Staffs:', staff);
             return response.ok({
                 success: true,
                 staff : staff

@@ -10,7 +10,7 @@
 import router from '@adonisjs/core/services/router'
 import CoursesController from '../app/controllers/courses_controller.js'
 import { middleware } from './kernel.js'
-import Staff from '#models/staff'
+//import Staff from '#models/staff'
 import StaffController from '../app/controllers/staff_controller.js'
 // import auth from '@adonisjs/auth/services/main'
 // const c = new CoursesController()
@@ -25,6 +25,15 @@ import StaffController from '../app/controllers/staff_controller.js'
 
 //   return { error: 'Invalid credentials' };
 // });
+router.post('/login', async ({ request, response }) => {
+  const { username, password } = request.only(['username', 'password'])
+
+  if (username === 'admin' && password === '1234') {
+    return response.ok({ token: '1234' }) 
+  }
+
+  return response.unauthorized({ error: 'Invalid credentials' })
+})
 
 router.group(()=>{
     router.post('/add',[CoursesController,'store']),

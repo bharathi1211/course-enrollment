@@ -5,16 +5,16 @@ import type {BelongsTo} from '@adonisjs/lucid/types/relations'
 export default class Course extends BaseModel {
   public static primaryKey = 'course_id' 
   
-  @column({ isPrimary: true, columnName:'courseId' })
+  @column({ isPrimary: true, columnName:'course_id' })
   declare course_id: number
 
   @column({ columnName: 'department' })
   declare department: string
   
-  @column({ columnName: 'courseName' })
+  @column({ columnName: 'course_name' })
   declare course_name: string
 
-  @column({ columnName: 'staffId' })
+  @column({ columnName: 'staff_id' })
   declare staff_id: number
 
   // @column()

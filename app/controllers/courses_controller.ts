@@ -2,6 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { courseStoreSchema, CourseIdSchema ,courseUpdateSchema} from "#validators/course-validator"
 import CoursesRepository from '../repository/CoursesRepository.js'
 import { messages } from '@vinejs/vine/defaults';
+import { log } from 'console';
 
 
 export default class CoursesController {
@@ -60,7 +61,9 @@ export default class CoursesController {
     async update({request,params}: HttpContext) {
         try{
             const payload = await CourseIdSchema.validate(params)
+            //console.log('requestbody:', request.body());
             const courseData = await courseUpdateSchema.validate(request.body())
+            // console.log('courseData:', courseData);
             const courses = await CoursesRepository.update(payload.course_id, courseData)
             return{
                 success: true,

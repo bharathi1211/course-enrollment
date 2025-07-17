@@ -6,11 +6,11 @@ export const courseStoreSchema = vine.compile(
   course_name: vine.string().maxLength(100),
   department: vine.string().maxLength(50),
   staff_id: vine.number().exists(async (db, value) => {
-    const exists = await db.from('staff').where('staffId', value).first()
+    const exists = await db.from('staff').where('staff_id', value).first()
     return !!exists
   }),
   course_id: vine.number().unique(async (db,value)=>{
-    const exists = await db.from('courses').where('courseId',value).first()
+    const exists = await db.from('courses').where('course_id',value).first()
     console.log("Entered validating function: ", exists)
     return !exists
   })
@@ -20,7 +20,7 @@ export const CourseIdSchema = vine.compile(
   vine.object({
     course_id: vine.number().exists(async (db, value) => {
       console.log("Entered validating function: ", value)
-      const exists = await db.from('courses').where('courseId', value).first()
+      const exists = await db.from('courses').where('course_id', value).first()
       return !!exists
     })
   })
@@ -30,7 +30,12 @@ export const courseUpdateSchema = vine.compile(
   vine.object({
   course_name: vine.string().maxLength(100),
   staff_id: vine.number().exists(async (db, value) => {
-    const exists = await db.from('staff').where('staffId', value).first()
+    const exists = await db.from('staff').where('staff_id', value).first()
+    return !!exists
+  })
+  , department: vine.string().maxLength(50),
+  course_id: vine.number().exists(async (db, value) => {  
+    const exists = await db.from('courses').where('course_id', value).first()
     return !!exists
   })
 }))
