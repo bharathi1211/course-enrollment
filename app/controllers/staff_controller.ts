@@ -8,7 +8,12 @@ import { log } from 'console';
 export default class StaffController {
     async store({ request }:HttpContext ) {
         try {
-            const staffData = await staffStoreSchema.validate(request.body())
+            console.log('Headers:', request.headers());
+            console.log('Method:', request.method());
+            console.log('Raw URL:', request.url());
+            const data = await request.body();
+            console.log('body :',data);
+            const staffData = await staffStoreSchema.validate(data)
             console.log('courseData:', staffData);
             const staff = await StaffRepository.create(staffData);
             // console.log('created');
@@ -77,10 +82,10 @@ export default class StaffController {
     async destroy({params}: HttpContext) {
         try{
             const payload = await staffIdSchema.validate(params)
+            console.log("payload",payload);
             const staff = await StaffRepository.delete(payload.staff_id)
             return{
                 success: true,
-                messages: 'Course deleted successfully',
                 staff : staff
             };
         }
